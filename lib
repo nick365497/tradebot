@@ -1,0 +1,62 @@
+export const STOCKS = [
+  // Mega-cap
+  { t: 'NVDA', n: 'Nvidia Corp.',      cap: 'mega',  p: 892.40, c: +2.1 },
+  { t: 'AAPL', n: 'Apple Inc.',         cap: 'mega',  p: 213.10, c: +0.4 },
+  { t: 'MSFT', n: 'Microsoft Corp.',    cap: 'mega',  p: 414.70, c: +0.9 },
+  { t: 'AMZN', n: 'Amazon.com',         cap: 'mega',  p: 188.90, c: +1.3 },
+  // Large-cap
+  { t: 'TSLA', n: 'Tesla Inc.',         cap: 'large', p: 174.22, c: -1.8 },
+  { t: 'META', n: 'Meta Platforms',     cap: 'large', p: 531.00, c: -0.6 },
+  { t: 'PLTR', n: 'Palantir Tech.',     cap: 'large', p:  24.80, c: +3.2 },
+  // Small-cap
+  { t: 'IONQ', n: 'IonQ Inc.',          cap: 'small', p:  11.42, c: +5.1 },
+  { t: 'SOUN', n: 'SoundHound AI',      cap: 'small', p:   6.87, c: +4.3 },
+  { t: 'ACHR', n: 'Archer Aviation',    cap: 'small', p:   8.21, c: +2.7 },
+  { t: 'BYRN', n: 'Byrna Tech.',        cap: 'small', p:  14.60, c: -1.2 },
+  { t: 'MGNI', n: 'Magnite Inc.',       cap: 'small', p:  17.33, c: +0.8 },
+  { t: 'CLOV', n: 'Clover Health',      cap: 'small', p:   3.12, c: +6.4 },
+  // Penny stocks
+  { t: 'CMPX', n: 'Compass Pathways',  cap: 'penny', p:   1.84, c: +8.2 },
+  { t: 'IDEX', n: 'Ideanomics',         cap: 'penny', p:   0.62, c: -3.1 },
+  { t: 'GFAI', n: 'Guardforce AI',      cap: 'penny', p:   0.44, c:+11.5 },
+  { t: 'BBIG', n: 'Vinco Ventures',     cap: 'penny', p:   0.31, c: -5.8 },
+  { t: 'EZFL', n: 'EzFill Holdings',    cap: 'penny', p:   0.18, c:+14.2 },
+]
+
+export const FALLBACK_DECISIONS = {
+  NVDA: { d: 'BUY',  c: 88, r: 'AI chip demand surge — data center revenue up 400% YoY.' },
+  AAPL: { d: 'HOLD', c: 61, r: 'Stable but no major catalyst. Watching WWDC.' },
+  MSFT: { d: 'BUY',  c: 82, r: 'Azure + Copilot adoption strong. Targets raised.' },
+  AMZN: { d: 'BUY',  c: 77, r: 'AWS and advertising both outperforming.' },
+  TSLA: { d: 'SELL', c: 72, r: 'CEO controversy and EV competition headwinds.' },
+  META: { d: 'SELL', c: 69, r: 'Ad revenue fears. Reality Labs losses continue.' },
+  PLTR: { d: 'BUY',  c: 75, r: 'Government AI contracts expanding rapidly.' },
+  IONQ: { d: 'BUY',  c: 71, r: 'Quantum computing sector momentum building.' },
+  SOUN: { d: 'BUY',  c: 68, r: 'AI voice demand rising across automotive.' },
+  ACHR: { d: 'HOLD', c: 55, r: 'eVTOL sector mixed — awaiting FAA approval.' },
+  BYRN: { d: 'SELL', c: 60, r: 'Revenue miss reported last quarter.' },
+  MGNI: { d: 'HOLD', c: 58, r: 'Ad market uncertain — neutral stance.' },
+  CLOV: { d: 'BUY',  c: 65, r: 'Health-tech momentum — membership growing.' },
+  CMPX: { d: 'HOLD', c: 52, r: 'Volatile penny — thin volume, wait for signal.' },
+  IDEX: { d: 'SELL', c: 63, r: 'Dilution risk high — avoid for now.' },
+  GFAI: { d: 'BUY',  c: 59, r: 'AI security demand rising in Asia markets.' },
+  BBIG: { d: 'SELL', c: 66, r: 'Reverse split risk — bearish signal.' },
+  EZFL: { d: 'BUY',  c: 57, r: 'Expansion news positive — new city contracts.' },
+}
+
+export const RISK_RULES = {
+  dailyLossLimit:    500,
+  maxPositionSize:   1500,
+  stopLossPct:       3,
+  maxExposurePct:    70,
+  maxTradesPerDay:   10,
+  pennyCapPct:       10,
+  smallCapPct:       20,
+}
+
+import { createClient } from '@supabase/supabase-js'
+
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL
+const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
+
+export const supabase = createClient(supabaseUrl, supabaseAnonKey)
